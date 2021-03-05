@@ -1,12 +1,13 @@
 {
   "name": "api",
   "version": "1.0.0",
+  "type": "module",
   "description": "",
   "main": "source/server.ts",
   "scripts": {
     "build": "rm -rf build && prettier --write source/ && tsc",
     "start": "npx nodemon source/server.ts",
-    "test": "mocha source/test/station.test.ts"
+    "test": "mocha -r ts-node/register source/test/station.test.ts"
   },
   "author": "",
   "license": "ISC",
