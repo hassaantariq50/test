@@ -111,21 +111,18 @@
 // //   });
 // // });
 
-var controller = require('../controllers/station');
 // import controller from '../controllers/station';
 
 import chai from 'chai';
+import controller from '../controllers/station';
 chai.use(require('chai-fs'));
-// import sinon from 'sinon';
 const expect = require('chai').expect;
-// import fetch from 'node-fetch';
-// import verifyToken from '../source/services/verifyToken';
 
 describe('station insertion unit test case', async () => {
     it('should return error from user station', function (done) {
-        let Obj = {};
+        let obj = {};
         controller
-            .createStation(Obj)
+            .createStation(obj)
             .then((res: any) => {
                 // never called
             })
@@ -136,13 +133,13 @@ describe('station insertion unit test case', async () => {
             });
     });
     it('should return user from station save', function (done) {
-        let Obj = {};
+        let obj = {};
         controller
-            .createStation(Obj)
+            .createStation(obj)
             .then((res: any) => {
                 expect(res).to.be.not.equal(undefined);
                 expect(res).to.be.not.equal(null);
-                expect(res.Obj).to.be.an('object');
+                expect(res.obj).to.be.an(obj);
                 done();
             })
             .catch((error: any) => {
