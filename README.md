@@ -29,9 +29,11 @@ npm test
 
 Swagger is an Interface Description Language for describing RESTful APIs expressed using JSON.
 
-# Jest
+# Chai
+Since I have worked on chai so I have used chai in this project. Chai is a BDD / TDD assertion library for node and the browser that can be delightfully paired with any javascript/typescript testing framework.
 
-Jest is a delightful JavaScript Testing Framework with a focus on simplicity.
+# Mocha
+It works with chai, it is very Simple, flexible, JavaScript/Typescript test framework for Node.js & The Browser 
 
 # Heroku
 
