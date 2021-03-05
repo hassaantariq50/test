@@ -11,7 +11,8 @@ Using Typescript, Node.js, and Express created a new API server which accumulate
 
 # Requirement
 
-Nodejs >= 6.x.x (Recommended v12.16.1) MongoDB >= 3.x.x
+Nodejs >= 12.x.x  
+MongoDB >= 4.x.x
 
 # Installation
 
