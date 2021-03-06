@@ -16,7 +16,7 @@ npm start
 npm test
 # Swagger
 Swagger is an Interface Description Language for describing RESTful APIs expressed using JSON.
-URL: https://test-indego.herokuapp.com/swagger/
+URL: https://hassaan-indego-test.herokuapp.com/swagger/
 # Chai
 Since I have worked on chai so I have used chai in this project. Chai is a BDD / TDD assertion library for node and the browser that can be delightfully paired with any javascript/typescript testing framework.
 # Mocha
