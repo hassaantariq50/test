@@ -50,7 +50,7 @@ var station_1 = __importDefault(require("../models/station"));
 var scheduler = function () { return __awaiter(void 0, void 0, void 0, function () {
     var task;
     return __generator(this, function (_a) {
-        task = node_schedule_1.default.scheduleJob('* 1 * * *', function () {
+        task = node_schedule_1.default.scheduleJob('0 0 */1 * * *', function () {
             node_fetch_1.default('https://www.rideindego.com/stations/json/')
                 .then(function (res) { return res.json(); })
                 .catch(function (error) {

@@ -7,8 +7,8 @@
     },
     "servers": [
         {
-            "url": "/",
-            "description": "Local Dev, or from Heroku"
+            "url": "https://hassaan-indego-test.herokuapp.com/api/v1",
+            "description": "Heroku"
         }
     ],
     "tags": [
@@ -25,19 +25,20 @@
             "description": "Snapshot of one station at a specific time"
         }
     ],
-
-
     "paths": {
-        "https://test-indego.herokuapp.com/api/v1/indego-data-fetch-and-store-it-db": {
+        "/indego-data-fetch-and-store-it-db": {
             "post": {
                 "tags": [
                     "indego-data-fetch-and-store-it-db"
                 ],
                 "summary": "downloads fresh data from Indego GeoJSON station status API and stores it inside MongoDB.",
                 "requestBody": {
-                    "description": "",
+                    "description": "Fetch data",
                     "content": {
                         "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/feature"
+                            }
                         }
                     }
                 },
@@ -48,7 +49,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#"
+                            "$ref": "#/definitions/feature"
                         }
                     },
                     "400": {
@@ -57,8 +58,7 @@
                 }
             }
         },
-
-        "https://test-indego.herokuapp.com/api/v1/stations?at=2019-09-01T10:00:00": {
+        "/stations?at=2019-09-01T10:00:00": {
             "get": {
                 "tags": [
                     "stations?at=2019-09-01T10:00:00"
@@ -68,6 +68,9 @@
                     "description": "",
                     "content": {
                         "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/response"
+                            }
                         }
                     }
                 },
@@ -78,7 +81,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#"
+                            "$ref": "#/definitions/response"
                         }
                     },
                     "400": {
@@ -87,8 +90,7 @@
                 }
             }
         },
-
-        "https://test-indego.herokuapp.com/api/v1/stations/KIOSKID_GOES_HERE?at=2019-09-01T10:00:00": {
+        "/stations/KIOSKID_GOES_HERE?at=2019-09-01T10:00:00": {
             "get": {
                 "tags": [
                     "stations/KIOSKID_GOES_HERE?at=2019-09-01T10:00:00"
@@ -98,6 +100,9 @@
                     "description": "",
                     "content": {
                         "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/response"
+                            }
                         }
                     }
                 },
@@ -108,7 +113,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#"
+                            "$ref": "#/definitions/response"
                         }
                     },
                     "400": {
@@ -117,27 +122,291 @@
                 }
             }
         }
-        
     },
-
     
     
-
     "definitions": {
-        "id": {
+        "geometry":{
+            "type": "object",
             "properties": {
-                "uuid": {
-                    "type": "string"
+                "coordinate": {
+                    "type":"string"
+                },
+                "type":{
+                    "type":"string"
                 }
             }
         },
-        "Cat": {
+        "properties":{
             "type": "object",
             "properties": {
-                "genus": {
-                    "type": "string"
+                "id": {
+                    "type":"number"
+                },
+                "name":{
+                    "type":"string"
+                },
+                "coordinates":{
+                    "type":"Array"
+                },
+                "totalDocks":{
+                    "type":"number"
+                },
+                "docksAvailable":{
+                    "type":"number"
+                },
+                "bikesAvailable":{
+                    "type":"number"
+                },
+                "classicBikesAvailable":{
+                    "type":"number"
+                },
+                "smartBikesAvailable":{
+                    "type":"number"
+                },
+                "electricBikesAvailable":{
+                    "type":"number"
+                },
+                "rewardBikesAvailable":{
+                    "type":"number"
+                },
+                "rewardDocksAvailable":{
+                    "type":"number"
+                },
+                "kioskStatus":{
+                    "type":"string"
+                },
+                "kioskPublicStatus":{
+                    "type":"string"
+                },
+                "kioskConnectionStatus":{
+                    "type":"string"
+                },
+                "kioskType":{
+                    "type":"number"
+                },
+                "addressStreet":{
+                    "type":"string"
+                },
+                "addressCity":{
+                    "type":"string"
+                },
+                "addressState":{
+                    "type":"string"
+                },
+                "addressZipCode":{
+                    "type":"string"
+                },
+                "bikes":{
+                    "type":"Array"
+                },
+                "closeTime":{
+                    "type":"string"
+                },
+                "eventEnd":{
+                    "type":"string"
+                },
+                "eventStart":{
+                    "type":"string"
+                },
+                "isEventBased":{
+                    "type":"string"
+                },
+                "isVirtual":{
+                    "type":"string"
+                },
+                "kioskId":{
+                    "type":"number"
+                },
+                "notes":{
+                    "type":"string"
+                },
+                "openTime":{
+                    "type":"string"
+                },
+                "publicText":{
+                    "type":"string"
+                },
+                "timeZone":{
+                    "type":"string"
+                },
+                "trikesAvailable":{
+                    "type":"number"
+                },
+                "latitude":{
+                    "type":"number"
+                },
+                "longitude":{
+                    "type":"number"
                 }
             }
+        },
+        "Array": {
+            "type": "object",
+            "properties": {
+                "geometry": {
+                    "$ref": "#/definitions/geometry"
+                },
+                "properties":{
+                    "$ref": "#/definitions/properties"
+                },
+                "type":{
+                    "type":"string"
+                }
+            }
+        },
+        "coord": {
+            "type": "object",
+            "properties": {
+                "long": {
+                    "type":"number"
+                },
+                "lat":{
+                    "type":"number"
+                }
+            }
+        },
+        "weather": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type":"number"
+                },
+                "main":{
+                    "type":"string"
+                },
+                "description":{
+                    "type":"string"
+                },
+                "icon":{
+                    "type":"string"
+                }
+            }
+        },
+        "main": {
+            "type": "object",
+            "properties": {
+                "temp": {
+                    "type":"number"
+                },
+                "feels_like":{
+                    "type":"number"
+                },
+                "temp_min":{
+                    "type":"number"
+                },
+                "temp_max":{
+                    "type":"number"
+                },
+                "pressure":{
+                    "type":"number"
+                },
+                "humidity":{
+                    "type":"number"
+                }
+            }
+        },
+        "wind": {
+            "type": "object",
+            "properties": {
+                "speed": {
+                    "type":"number"
+                },
+                "deg":{
+                    "type":"number"
+                }
+            }
+        },
+        "clouds": {
+            "type": "object",
+            "properties": {
+                "all": {
+                    "type":"number"
+                }
+            }
+        },
+        "sys": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "type":"number"
+                },
+                "id":{
+                    "type":"number"
+                },
+                "country":{
+                    "type":"string"
+                },
+                "sunrise":{
+                    "type":"number"
+                },
+                "sunset":{
+                    "type":"number"
+                }
+            }
+        },
+        "data": {
+            "type": "object",
+            "properties": {
+                "coord": {
+                    "$ref": "#/definitions/coord"
+                },
+                "weather":{
+                    "$ref": "#/definitions/weather"
+                },
+                "base":{
+                    "type":"string"
+                },
+                "main":{
+                    "$ref": "#/definitions/main"
+                },
+                "visibility":{
+                    "type":"number"
+                },
+                "wind":{
+                    "$ref": "#/definitions/wind"
+                },
+                "clouds":{
+                    "$ref": "#/definitions/clouds"
+                },
+                "dt":{
+                    "type":"number"
+                },
+                "sys":{
+                    "$ref": "#/definitions/sys"
+                },
+                "timezone":{
+                    "type":"string"
+                },
+                "id":{
+                    "type":"number"
+                },
+                "name":{
+                    "type":"string"
+                },
+                "cod":{
+                    "type":"number"
+                }
+
+            }
+        },
+
+        "feature": {
+            "$ref": "#/definitions/Array"
+        },
+        "response": {
+            "type": "object",
+            "properties": {
+                "at":{
+                    "type":"string"
+                },
+                "weather":{
+                    "$ref": "#/definitions/data"
+                },
+                "stations":{
+                    "$ref": "#/definitions/feature"
+                }
+            }  
         }
     }
 }

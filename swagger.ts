@@ -3,11 +3,11 @@ export const swaggerDocument = {
  info: {
      version: '1.0.0',
      title: 'APIs Document',
-     description: 'your description here',
+     description: 'API documentation for indego-backend',
      termsOfService: '',
      contact: {
-         name: 'Inam Ullah Khan',
-         email: 'inam@eforte.net',
+         name: 'Hassaan Tariq',
+         email: 'hassaan@eforte.net',
          url: '#'
      },
      license: {
