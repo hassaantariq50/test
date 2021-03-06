@@ -1,4 +1,3 @@
-import http from 'http';
 import bodyParser from 'body-parser';
 import express from 'express';
 import logging from './config/logging';
@@ -8,15 +7,21 @@ import scheduler from './services/scheduler';
 import mongoose from 'mongoose';
 import swaggerUi from 'swagger-ui-express';
 import * as swaggerDocument from '../swagger.json';
+import cors from 'cors';
+// let cors = require('cors');
+// import dotenv from 'dotenv';
+
+// dotenv.config();
 
 scheduler();
 
 const NAMESPACE = 'Server';
 const router = express();
+const MONGO_ATLAS:string = `mongodb+srv://dbHassaan:dbHassaan@hassaan-indego-db.fcdob.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
 
 /** Connect to Mongo */
 mongoose
-    .connect(config.mongo.url, config.mongo.options)
+    .connect(MONGO_ATLAS, config.mongo.options)
     .then((result) => {
         logging.info(NAMESPACE, 'Mongo Connected');
     })
@@ -24,6 +29,15 @@ mongoose
         logging.error(NAMESPACE, error.message, error);
     });
 
+/** Parse the body of the request */
+// router.use(bodyParser.urlencoded({ extended: true }));
+// router.use(bodyParser.json());
+router.use(bodyParser.json({ limit: '900mb' }));
+router.use(bodyParser.urlencoded({ extended: true }));
+
+/* FOR CORS */
+router.use(cors());    
+    
 /** Log the request */
 router.use((req, res, next) => {
     /** Log the req */
@@ -37,9 +51,7 @@ router.use((req, res, next) => {
     next();
 });
 
-/** Parse the body of the request */
-router.use(bodyParser.urlencoded({ extended: true }));
-router.use(bodyParser.json());
+
 
 router.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 

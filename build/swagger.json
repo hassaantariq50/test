@@ -13,32 +13,29 @@
     ],
     "tags": [
         {
-            "name": "indego-data-fetch-and-store-it-db",
+            "name": "createStation",
             "description": "Store data from Indego"
         },
         {
-            "name": "stations?at=2019-09-01T10:00:00",
+            "name": "getWeatherAndStationData",
             "description": "Snapshot of all stations at a specified time"
         },
         {
-            "name": "stations/KIOSKID_GOES_HERE?at=2019-09-01T10:00:00",
+            "name": "getWeatherAndStationDataByKioskId",
             "description": "Snapshot of one station at a specific time"
         }
     ],
-
-
     "paths": {
-        "https://test-indego.herokuapp.com/api/v1/indego-data-fetch-and-store-it-db": {
+        "/createStation": {
             "post": {
                 "tags": [
-                    "indego-data-fetch-and-store-it-db"
+                    "createStation"
                 ],
                 "summary": "downloads fresh data from Indego GeoJSON station status API and stores it inside MongoDB.",
                 "requestBody": {
                     "description": "",
                     "content": {
-                        "application/json": {
-                        }
+                        "application/json": {}
                     }
                 },
                 "produces": [
@@ -57,18 +54,16 @@
                 }
             }
         },
-
-        "https://test-indego.herokuapp.com/api/v1/stations?at=2019-09-01T10:00:00": {
+        "/getWeatherAndStationData": {
             "get": {
                 "tags": [
-                    "stations?at=2019-09-01T10:00:00"
+                    "getWeatherAndStationData"
                 ],
                 "summary": "Open Weather Map for all stations at specified time",
                 "requestBody": {
                     "description": "",
                     "content": {
-                        "application/json": {
-                        }
+                        "application/json": {}
                     }
                 },
                 "produces": [
@@ -87,18 +82,16 @@
                 }
             }
         },
-
-        "https://test-indego.herokuapp.com/api/v1/stations/KIOSKID_GOES_HERE?at=2019-09-01T10:00:00": {
+        "/getWeatherAndStationDataByKioskId": {
             "get": {
                 "tags": [
-                    "stations/KIOSKID_GOES_HERE?at=2019-09-01T10:00:00"
+                    "getWeatherAndStationDataByKioskId"
                 ],
                 "summary": "Open Weather Map for all stations at specified time",
                 "requestBody": {
                     "description": "",
                     "content": {
-                        "application/json": {
-                        }
+                        "application/json": {}
                     }
                 },
                 "produces": [
@@ -117,12 +110,7 @@
                 }
             }
         }
-        
     },
-
-    
-    
-
     "definitions": {
         "id": {
             "properties": {
