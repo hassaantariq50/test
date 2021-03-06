@@ -31,8 +31,8 @@ const MONGO = {
     url: `mongodb://${MONGO_USERNAME}/${DB_NAME}`
 };
 
-// const SERVER_HOSTNAME = process.env.SERVER_HOSTNAME || 'https://test-indego.herokuapp.com';
-const SERVER_HOSTNAME = process.env.SERVER_HOSTNAME || 'localhost';
+const SERVER_HOSTNAME = process.env.SERVER_HOSTNAME || 'https://hassaan-indego-test.herokuapp.com/';
+// const SERVER_HOSTNAME = process.env.SERVER_HOSTNAME || 'localhost';
 const SERVER_PORT = process.env.PORT || 4000;
 
 const SERVER = {
