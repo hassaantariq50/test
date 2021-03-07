@@ -123,121 +123,119 @@
             }
         }
     },
-    
-    
     "definitions": {
-        "geometry":{
+        "geometry": {
             "type": "object",
             "properties": {
                 "coordinate": {
-                    "type":"string"
+                    "type": "string"
                 },
-                "type":{
-                    "type":"string"
+                "type": {
+                    "type": "string"
                 }
             }
         },
-        "properties":{
+        "properties": {
             "type": "object",
             "properties": {
                 "id": {
-                    "type":"number"
+                    "type": "number"
                 },
-                "name":{
-                    "type":"string"
+                "name": {
+                    "type": "string"
                 },
-                "coordinates":{
-                    "type":"Array"
+                "coordinates": {
+                    "type": "Array"
                 },
-                "totalDocks":{
-                    "type":"number"
+                "totalDocks": {
+                    "type": "number"
                 },
-                "docksAvailable":{
-                    "type":"number"
+                "docksAvailable": {
+                    "type": "number"
                 },
-                "bikesAvailable":{
-                    "type":"number"
+                "bikesAvailable": {
+                    "type": "number"
                 },
-                "classicBikesAvailable":{
-                    "type":"number"
+                "classicBikesAvailable": {
+                    "type": "number"
                 },
-                "smartBikesAvailable":{
-                    "type":"number"
+                "smartBikesAvailable": {
+                    "type": "number"
                 },
-                "electricBikesAvailable":{
-                    "type":"number"
+                "electricBikesAvailable": {
+                    "type": "number"
                 },
-                "rewardBikesAvailable":{
-                    "type":"number"
+                "rewardBikesAvailable": {
+                    "type": "number"
                 },
-                "rewardDocksAvailable":{
-                    "type":"number"
+                "rewardDocksAvailable": {
+                    "type": "number"
                 },
-                "kioskStatus":{
-                    "type":"string"
+                "kioskStatus": {
+                    "type": "string"
                 },
-                "kioskPublicStatus":{
-                    "type":"string"
+                "kioskPublicStatus": {
+                    "type": "string"
                 },
-                "kioskConnectionStatus":{
-                    "type":"string"
+                "kioskConnectionStatus": {
+                    "type": "string"
                 },
-                "kioskType":{
-                    "type":"number"
+                "kioskType": {
+                    "type": "number"
                 },
-                "addressStreet":{
-                    "type":"string"
+                "addressStreet": {
+                    "type": "string"
                 },
-                "addressCity":{
-                    "type":"string"
+                "addressCity": {
+                    "type": "string"
                 },
-                "addressState":{
-                    "type":"string"
+                "addressState": {
+                    "type": "string"
                 },
-                "addressZipCode":{
-                    "type":"string"
+                "addressZipCode": {
+                    "type": "string"
                 },
-                "bikes":{
-                    "type":"Array"
+                "bikes": {
+                    "type": "Array"
                 },
-                "closeTime":{
-                    "type":"string"
+                "closeTime": {
+                    "type": "string"
                 },
-                "eventEnd":{
-                    "type":"string"
+                "eventEnd": {
+                    "type": "string"
                 },
-                "eventStart":{
-                    "type":"string"
+                "eventStart": {
+                    "type": "string"
                 },
-                "isEventBased":{
-                    "type":"string"
+                "isEventBased": {
+                    "type": "string"
                 },
-                "isVirtual":{
-                    "type":"string"
+                "isVirtual": {
+                    "type": "string"
                 },
-                "kioskId":{
-                    "type":"number"
+                "kioskId": {
+                    "type": "number"
                 },
-                "notes":{
-                    "type":"string"
+                "notes": {
+                    "type": "string"
                 },
-                "openTime":{
-                    "type":"string"
+                "openTime": {
+                    "type": "string"
                 },
-                "publicText":{
-                    "type":"string"
+                "publicText": {
+                    "type": "string"
                 },
-                "timeZone":{
-                    "type":"string"
+                "timeZone": {
+                    "type": "string"
                 },
-                "trikesAvailable":{
-                    "type":"number"
+                "trikesAvailable": {
+                    "type": "number"
                 },
-                "latitude":{
-                    "type":"number"
+                "latitude": {
+                    "type": "number"
                 },
-                "longitude":{
-                    "type":"number"
+                "longitude": {
+                    "type": "number"
                 }
             }
         },
@@ -247,11 +245,11 @@
                 "geometry": {
                     "$ref": "#/definitions/geometry"
                 },
-                "properties":{
+                "properties": {
                     "$ref": "#/definitions/properties"
                 },
-                "type":{
-                    "type":"string"
+                "type": {
+                    "type": "string"
                 }
             }
         },
@@ -259,10 +257,10 @@
             "type": "object",
             "properties": {
                 "long": {
-                    "type":"number"
+                    "type": "number"
                 },
-                "lat":{
-                    "type":"number"
+                "lat": {
+                    "type": "number"
                 }
             }
         },
@@ -270,16 +268,16 @@
             "type": "object",
             "properties": {
                 "id": {
-                    "type":"number"
+                    "type": "number"
                 },
-                "main":{
-                    "type":"string"
+                "main": {
+                    "type": "string"
                 },
-                "description":{
-                    "type":"string"
+                "description": {
+                    "type": "string"
                 },
-                "icon":{
-                    "type":"string"
+                "icon": {
+                    "type": "string"
                 }
             }
         },
@@ -287,22 +285,22 @@
             "type": "object",
             "properties": {
                 "temp": {
-                    "type":"number"
+                    "type": "number"
                 },
-                "feels_like":{
-                    "type":"number"
+                "feels_like": {
+                    "type": "number"
                 },
-                "temp_min":{
-                    "type":"number"
+                "temp_min": {
+                    "type": "number"
                 },
-                "temp_max":{
-                    "type":"number"
+                "temp_max": {
+                    "type": "number"
                 },
-                "pressure":{
-                    "type":"number"
+                "pressure": {
+                    "type": "number"
                 },
-                "humidity":{
-                    "type":"number"
+                "humidity": {
+                    "type": "number"
                 }
             }
         },
@@ -310,10 +308,10 @@
             "type": "object",
             "properties": {
                 "speed": {
-                    "type":"number"
+                    "type": "number"
                 },
-                "deg":{
-                    "type":"number"
+                "deg": {
+                    "type": "number"
                 }
             }
         },
@@ -321,7 +319,7 @@
             "type": "object",
             "properties": {
                 "all": {
-                    "type":"number"
+                    "type": "number"
                 }
             }
         },
@@ -329,19 +327,19 @@
             "type": "object",
             "properties": {
                 "type": {
-                    "type":"number"
+                    "type": "number"
                 },
-                "id":{
-                    "type":"number"
+                "id": {
+                    "type": "number"
                 },
-                "country":{
-                    "type":"string"
+                "country": {
+                    "type": "string"
                 },
-                "sunrise":{
-                    "type":"number"
+                "sunrise": {
+                    "type": "number"
                 },
-                "sunset":{
-                    "type":"number"
+                "sunset": {
+                    "type": "number"
                 }
             }
         },
@@ -351,62 +349,60 @@
                 "coord": {
                     "$ref": "#/definitions/coord"
                 },
-                "weather":{
+                "weather": {
                     "$ref": "#/definitions/weather"
                 },
-                "base":{
-                    "type":"string"
+                "base": {
+                    "type": "string"
                 },
-                "main":{
+                "main": {
                     "$ref": "#/definitions/main"
                 },
-                "visibility":{
-                    "type":"number"
+                "visibility": {
+                    "type": "number"
                 },
-                "wind":{
+                "wind": {
                     "$ref": "#/definitions/wind"
                 },
-                "clouds":{
+                "clouds": {
                     "$ref": "#/definitions/clouds"
                 },
-                "dt":{
-                    "type":"number"
+                "dt": {
+                    "type": "number"
                 },
-                "sys":{
+                "sys": {
                     "$ref": "#/definitions/sys"
                 },
-                "timezone":{
-                    "type":"string"
+                "timezone": {
+                    "type": "string"
                 },
-                "id":{
-                    "type":"number"
+                "id": {
+                    "type": "number"
                 },
-                "name":{
-                    "type":"string"
+                "name": {
+                    "type": "string"
                 },
-                "cod":{
-                    "type":"number"
+                "cod": {
+                    "type": "number"
                 }
-
             }
         },
-
         "feature": {
             "$ref": "#/definitions/Array"
         },
         "response": {
             "type": "object",
             "properties": {
-                "at":{
-                    "type":"string"
+                "at": {
+                    "type": "string"
                 },
-                "weather":{
+                "weather": {
                     "$ref": "#/definitions/data"
                 },
-                "stations":{
+                "stations": {
                     "$ref": "#/definitions/feature"
                 }
-            }  
+            }
         }
     }
 }

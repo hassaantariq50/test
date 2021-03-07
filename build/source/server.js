@@ -38,7 +38,6 @@ var cors_1 = __importDefault(require("cors"));
 scheduler_1.default();
 var NAMESPACE = 'Server';
 var router = express_1.default();
-
 var MONGO_ATLAS = "mongodb+srv://dbHassaan:dbHassaan@hassaan-indego-db.fcdob.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 /** Connect to Mongo */
 mongoose_1.default

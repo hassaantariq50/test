@@ -5,15 +5,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
-// const MONGO_OPTIONS = {
-//     useUnifiedTopology: true,
-//     useNewUrlParser: true,
-//     socketTimeoutMS: 30000,
-//     keepAlive: true,
-//     poolSize: 50,
-//     autoIndex: false,
-//     retryWrites: false
-// };
 var MONGO_OPTIONS = {
     useUnifiedTopology: true,
     useNewUrlParser: true,
@@ -32,9 +23,8 @@ var AUTH = {
     ID: process.env.ID || "5ebb9eaf57bdb60010961366",
     API_KEY: process.env.API_KEY || "1db98eda0fbacab7b868bc384634508e"
 };
-var MONGO_USERNAME = process.env.MONGO_USERNAME || 'localhost';
-var DB_NAME = process.env.DB_NAME || "indego-db";
-
+var MONGO_USERNAME = process.env.MONGO_USERNAME || 'dbHassaan';
+var DB_NAME = process.env.DB_NAME || "hassaan-indego-db";
 var MONGO = {
     // host: MONGO_HOST,
     username: MONGO_USERNAME,

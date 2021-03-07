@@ -43,7 +43,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getWeatherAndStationDataByKioskId = exports.getWeatherAndStationData = exports.createStation = void 0;
-var mongoose_1 = __importDefault(require("mongoose"));
 var station_1 = __importDefault(require("../models/station"));
 /**
  * createStation - insert station in database.
@@ -51,24 +50,18 @@ var station_1 = __importDefault(require("../models/station"));
  * @returns {Promise<void>}
  */
 var createStation = function (object) { return __awaiter(void 0, void 0, void 0, function () {
-    var station, error_1;
     return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0:
-                _a.trys.push([0, 2, , 3]);
-                station = new station_1.default({
-                    _id: new mongoose_1.default.Types.ObjectId(),
-                    data: object
+        return [2 /*return*/, new Promise(function (resolve, reject) {
+                var tempRating = new station_1.default(object);
+                tempRating.save(function (err, station) {
+                    if (err) {
+                        reject(err);
+                    }
+                    else {
+                        resolve(station);
+                    }
                 });
-                return [4 /*yield*/, station.save()];
-            case 1:
-                _a.sent();
-                return [2 /*return*/, station];
-            case 2:
-                error_1 = _a.sent();
-                return [2 /*return*/, error_1];
-            case 3: return [2 /*return*/];
-        }
+            })];
     });
 }); };
 exports.createStation = createStation;
@@ -78,7 +71,7 @@ exports.createStation = createStation;
  * @returns {Promise}
  */
 var getWeatherAndStationData = function (at) { return __awaiter(void 0, void 0, void 0, function () {
-    var station, error_2;
+    var station, error_1;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
@@ -88,8 +81,8 @@ var getWeatherAndStationData = function (at) { return __awaiter(void 0, void 0, 
                 station = _a.sent();
                 return [2 /*return*/, station];
             case 2:
-                error_2 = _a.sent();
-                return [2 /*return*/, error_2];
+                error_1 = _a.sent();
+                return [2 /*return*/, error_1];
             case 3: return [2 /*return*/];
         }
     });

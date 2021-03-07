@@ -27,6 +27,13 @@ router.post('/indego-data-fetch-and-store-it-db', verifyToken, async (req, res) 
                         error: null
                     });
                 }
+                else{
+                    return res.status(500).json({
+                        status: 500,
+                        data: null,
+                        error: "Something went wrong"
+                    });
+                }
             });
     } catch (err) {
         console.log('err >>', err);
@@ -63,6 +70,13 @@ router.get('/stations/:at', verifyToken, async (req, res) => {
                         error: null
                     });
                 }
+                else{
+                    return res.status(404).json({
+                        status: 404,
+                        data: null,
+                        error: "Could not find any station at the given time"
+                    });
+                }
             });
     } catch (err) {
         return res.status(400).json({
@@ -96,6 +110,13 @@ router.get('/stations/:at/:kioskId', verifyToken, async (req, res) => {
                         status: 200,
                         data: obj,
                         error: null
+                    });
+                }
+                else{
+                    return res.status(404).json({
+                        status: 404,
+                        data: null,
+                        error: "Could not find any station at the give time with the given KioskId"
                     });
                 }
             });

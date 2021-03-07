@@ -42,17 +42,110 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var chai_1 = __importDefault(require("chai"));
 var chai_fs_1 = __importDefault(require("chai-fs"));
 var chai_2 = require("chai");
-// import fetch from 'node-fetch';
-// import verifyToken from '../source/services/verifyToken';
+var sinon_1 = __importDefault(require("sinon"));
 var station_1 = require("../controllers/station");
+var station_2 = __importDefault(require("../models/station"));
 chai_1.default.use(require('chai-fs'));
 chai_1.default.use(chai_fs_1.default);
-// import sinon from 'sinon';
 describe('station insertion unit test case', function () { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
-        it('should return error from user station', function (done) {
-            var Obj = {};
-            station_1.createStation(Obj)
+        it('should return error from station save', function (done) {
+            var error = true;
+            var obj = {};
+            var isSaveMethodCalled = sinon_1.default
+                .stub(station_2.default.prototype, "save")
+                .yields(error, null);
+            station_1.createStation(obj)
+                .then(function (res) {
+                // never called
+            })
+                .catch(function (error) {
+                chai_2.expect(error).to.be.not.equal(undefined);
+                chai_2.expect(error).to.be.equal(true);
+                chai_2.expect(isSaveMethodCalled.calledOnce).to.be.equal(true);
+                isSaveMethodCalled.restore();
+                done();
+            });
+        });
+        it('should return station object from station save', function (done) {
+            var error = false;
+            var newObj = {
+                data: {
+                    feature: [],
+                    type: 'string'
+                },
+                createdAt: "2021-03-06 21:00:06.685Z",
+                updatedAt: "2021-03-06 21:00:06.685Z"
+            };
+            var isSaveMethodCalled = sinon_1.default
+                .stub(station_2.default.prototype, "save")
+                .yields(error, newObj);
+            station_1.createStation(newObj)
+                .then(function (res) {
+                chai_2.expect(res).to.be.not.equal(undefined);
+                chai_2.expect(res).to.be.not.equal(null);
+                chai_2.expect(newObj.createdAt).to.be.an("string");
+                chai_2.expect(newObj.data).to.be.equals(newObj.data);
+                chai_2.expect(newObj.updatedAt).to.be.an("string");
+                chai_2.expect(isSaveMethodCalled.calledOnce).to.be.equal(true);
+                isSaveMethodCalled.restore();
+                done();
+            })
+                .catch(function (error) {
+                // never called
+            });
+        });
+        return [2 /*return*/];
+    });
+}); });
+describe('station get unit test case by date', function () { return __awaiter(void 0, void 0, void 0, function () {
+    return __generator(this, function (_a) {
+        it('should return error on getting station from database', function (done) {
+            return __awaiter(this, void 0, void 0, function () {
+                var at;
+                return __generator(this, function (_a) {
+                    at = "2021-03-06 21:00:06.685Z";
+                    station_1.getWeatherAndStationData(at)
+                        .then(function (res) {
+                        // never called
+                    })
+                        .catch(function (error) {
+                        chai_2.expect(error).to.be.not.equal(undefined);
+                        chai_2.expect(error).to.be.equal(true);
+                    });
+                    done();
+                    return [2 /*return*/];
+                });
+            });
+        });
+        it('should return station object on getting station from database', function (done) {
+            return __awaiter(this, void 0, void 0, function () {
+                var at;
+                return __generator(this, function (_a) {
+                    at = "2021-03-06 21:00:06.685Z";
+                    station_1.getWeatherAndStationData(at)
+                        .then(function (res) {
+                        chai_2.expect(res).to.be.not.equal(undefined);
+                        chai_2.expect(res).to.be.not.equal(null);
+                        chai_2.expect(res.Obj).to.be.an('object');
+                    })
+                        .catch(function (error) {
+                        // never called
+                    });
+                    done();
+                    return [2 /*return*/];
+                });
+            });
+        });
+        return [2 /*return*/];
+    });
+}); });
+describe('station get unit test case by date and Kiosk Id', function () { return __awaiter(void 0, void 0, void 0, function () {
+    return __generator(this, function (_a) {
+        it('should return error on getting station from database', function (done) {
+            var at = "2021-03-06 21:00:06.685Z";
+            var id = "6043ed5623dab91c48889090";
+            station_1.getWeatherAndStationDataByKioskId(at, id)
                 .then(function (res) {
                 // never called
             })
@@ -62,15 +155,16 @@ describe('station insertion unit test case', function () { return __awaiter(void
             });
             done();
         });
-        it('should return user from station save', function (done) {
-            var Obj = {};
-            station_1.createStation(Obj)
+        it('should return station object on getting station from database', function (done) {
+            var at = "2021-03-06 21:00:06.685Z";
+            var id = "6043ed5623dab91c48889090";
+            station_1.getWeatherAndStationDataByKioskId(at, id)
                 .then(function (res) {
                 chai_2.expect(res).to.be.not.equal(undefined);
                 chai_2.expect(res).to.be.not.equal(null);
                 chai_2.expect(res.Obj).to.be.an('object');
             })
-            .catch(function (error) {
+                .catch(function (error) {
                 // never called
             });
             done();

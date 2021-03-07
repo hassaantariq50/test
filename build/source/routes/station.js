@@ -71,6 +71,13 @@ router.post('/indego-data-fetch-and-store-it-db', verifyToken_1.default, functio
                                             error: null
                                         })];
                                 }
+                                else {
+                                    return [2 /*return*/, res.status(500).json({
+                                            status: 500,
+                                            data: null,
+                                            error: "Something went wrong"
+                                        })];
+                                }
                                 return [2 /*return*/];
                         }
                     });
@@ -120,6 +127,13 @@ router.get('/stations/:at', verifyToken_1.default, function (req, res) { return 
                                             error: null
                                         })];
                                 }
+                                else {
+                                    return [2 /*return*/, res.status(404).json({
+                                            status: 404,
+                                            data: null,
+                                            error: "Could not find any station at the given time"
+                                        })];
+                                }
                                 return [2 /*return*/];
                         }
                     });
@@ -166,6 +180,13 @@ router.get('/stations/:at/:kioskId', verifyToken_1.default, function (req, res) 
                                             status: 200,
                                             data: obj,
                                             error: null
+                                        })];
+                                }
+                                else {
+                                    return [2 /*return*/, res.status(404).json({
+                                            status: 404,
+                                            data: null,
+                                            error: "Could not find any station at the give time with the given KioskId"
                                         })];
                                 }
                                 return [2 /*return*/];

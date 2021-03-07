@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsc",
     "start": "npx nodemon build/source/server.js",
-    "test": "mocha -r ts-node/register source/tests/station.test.ts",
+    "test": "mocha -r ts-node/register source/tests/station.test.ts --timeout 5000",
     "server": "npx nodemon source/server.ts"
   },
   "author": "",
