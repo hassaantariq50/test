@@ -47,42 +47,49 @@ var config_1 = __importDefault(require("../config/config"));
 var node_fetch_1 = __importDefault(require("node-fetch"));
 var station_1 = require("../controllers/station");
 var router = express_1.default.Router();
-router.post('/indego-data-fetch-and-store-it-db', verifyToken_1.default, function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+router.post('/indego-data-fetch-and-store-it-db', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var verified;
     return __generator(this, function (_a) {
         console.log("calling request...>>");
         try {
-            node_fetch_1.default('https://www.rideindego.com/stations/json/')
-                .then(function (res) { return res.json(); })
-                .catch(function (error) {
-                return error;
-            })
-                .then(function (response) {
-                return __awaiter(this, void 0, void 0, function () {
-                    var data;
-                    return __generator(this, function (_a) {
-                        switch (_a.label) {
-                            case 0: return [4 /*yield*/, station_1.createStation(response)];
-                            case 1:
-                                data = _a.sent();
-                                if (data) {
-                                    return [2 /*return*/, res.status(200).json({
-                                            status: 200,
-                                            data: data,
-                                            error: null
-                                        })];
-                                }
-                                else {
-                                    return [2 /*return*/, res.status(500).json({
-                                            status: 500,
-                                            data: null,
-                                            error: "Something went wrong"
-                                        })];
-                                }
-                                return [2 /*return*/];
-                        }
+            verified = verifyToken_1.default(req.headers.authorization);
+            if (verified.status == 200) {
+                node_fetch_1.default('https://www.rideindego.com/stations/json/')
+                    .then(function (res) { return res.json(); })
+                    .catch(function (error) {
+                    return error;
+                })
+                    .then(function (response) {
+                    return __awaiter(this, void 0, void 0, function () {
+                        var data;
+                        return __generator(this, function (_a) {
+                            switch (_a.label) {
+                                case 0: return [4 /*yield*/, station_1.createStation(response)];
+                                case 1:
+                                    data = _a.sent();
+                                    if (data) {
+                                        return [2 /*return*/, res.status(200).json({
+                                                status: 200,
+                                                data: data,
+                                                error: null
+                                            })];
+                                    }
+                                    else {
+                                        return [2 /*return*/, res.status(500).json({
+                                                status: 500,
+                                                data: null,
+                                                error: "Something went wrong"
+                                            })];
+                                    }
+                                    return [2 /*return*/];
+                            }
+                        });
                     });
                 });
-            });
+            }
+            else {
+                return [2 /*return*/, res.status(verified.status).json(verified)];
+            }
         }
         catch (err) {
             console.log('err >>', err);
@@ -95,50 +102,57 @@ router.post('/indego-data-fetch-and-store-it-db', verifyToken_1.default, functio
         return [2 /*return*/];
     });
 }); });
-router.get('/stations/:at', verifyToken_1.default, function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+router.get('/stations/:at', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var verified;
     return __generator(this, function (_a) {
         try {
-            node_fetch_1.default('https://api.openweathermap.org/data/2.5/weather?q=Philadelphia&appid=' + config_1.default.auth.API_KEY)
-                .then(function (res) { return res.json(); })
-                .catch(function (error) {
-                return res.status(400).json({
-                    status: 400,
-                    data: null,
-                    error: error.message
-                });
-            })
-                .then(function (response) {
-                return __awaiter(this, void 0, void 0, function () {
-                    var data, obj;
-                    return __generator(this, function (_a) {
-                        switch (_a.label) {
-                            case 0: return [4 /*yield*/, station_1.getWeatherAndStationData(req.params.at)];
-                            case 1:
-                                data = _a.sent();
-                                obj = {
-                                    at: req.params.at,
-                                    weather: response,
-                                    station: data
-                                };
-                                if (data) {
-                                    return [2 /*return*/, res.status(200).json({
-                                            status: 200,
-                                            data: obj,
-                                            error: null
-                                        })];
-                                }
-                                else {
-                                    return [2 /*return*/, res.status(404).json({
-                                            status: 404,
-                                            data: null,
-                                            error: "Could not find any station at the given time"
-                                        })];
-                                }
-                                return [2 /*return*/];
-                        }
+            verified = verifyToken_1.default(req.headers.authorization);
+            if (verified.status == 200) {
+                node_fetch_1.default('https://api.openweathermap.org/data/2.5/weather?q=Philadelphia&appid=' + config_1.default.auth.API_KEY)
+                    .then(function (res) { return res.json(); })
+                    .catch(function (error) {
+                    return res.status(400).json({
+                        status: 400,
+                        data: null,
+                        error: error.message
+                    });
+                })
+                    .then(function (response) {
+                    return __awaiter(this, void 0, void 0, function () {
+                        var data, obj;
+                        return __generator(this, function (_a) {
+                            switch (_a.label) {
+                                case 0: return [4 /*yield*/, station_1.getWeatherAndStationData(req.params.at)];
+                                case 1:
+                                    data = _a.sent();
+                                    obj = {
+                                        at: req.params.at,
+                                        weather: response,
+                                        station: data
+                                    };
+                                    if (data) {
+                                        return [2 /*return*/, res.status(200).json({
+                                                status: 200,
+                                                data: obj,
+                                                error: null
+                                            })];
+                                    }
+                                    else {
+                                        return [2 /*return*/, res.status(404).json({
+                                                status: 404,
+                                                data: null,
+                                                error: "Could not find any station at the given time"
+                                            })];
+                                    }
+                                    return [2 /*return*/];
+                            }
+                        });
                     });
                 });
-            });
+            }
+            else {
+                return [2 /*return*/, res.status(verified.status).json(verified)];
+            }
         }
         catch (err) {
             return [2 /*return*/, res.status(400).json({
@@ -150,50 +164,57 @@ router.get('/stations/:at', verifyToken_1.default, function (req, res) { return 
         return [2 /*return*/];
     });
 }); });
-router.get('/stations/:at/:kioskId', verifyToken_1.default, function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+router.get('/stations/:at/:kioskId', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var verified;
     return __generator(this, function (_a) {
         try {
-            node_fetch_1.default('https://api.openweathermap.org/data/2.5/weather?q=Philadelphia&appid=' + config_1.default.auth.API_KEY)
-                .then(function (res) { return res.json(); })
-                .catch(function (error) {
-                return res.status(400).json({
-                    status: 400,
-                    data: null,
-                    error: error.message
-                });
-            })
-                .then(function (response) {
-                return __awaiter(this, void 0, void 0, function () {
-                    var data, obj;
-                    return __generator(this, function (_a) {
-                        switch (_a.label) {
-                            case 0: return [4 /*yield*/, station_1.getWeatherAndStationDataByKioskId(req.params.at, req.params.kioskId)];
-                            case 1:
-                                data = _a.sent();
-                                obj = {
-                                    at: req.params.at,
-                                    weather: response,
-                                    station: data
-                                };
-                                if (data) {
-                                    return [2 /*return*/, res.status(200).json({
-                                            status: 200,
-                                            data: obj,
-                                            error: null
-                                        })];
-                                }
-                                else {
-                                    return [2 /*return*/, res.status(404).json({
-                                            status: 404,
-                                            data: null,
-                                            error: "Could not find any station at the give time with the given KioskId"
-                                        })];
-                                }
-                                return [2 /*return*/];
-                        }
+            verified = verifyToken_1.default(req.headers.authorization);
+            if (verified.status == 200) {
+                node_fetch_1.default('https://api.openweathermap.org/data/2.5/weather?q=Philadelphia&appid=' + config_1.default.auth.API_KEY)
+                    .then(function (res) { return res.json(); })
+                    .catch(function (error) {
+                    return res.status(400).json({
+                        status: 400,
+                        data: null,
+                        error: error.message
+                    });
+                })
+                    .then(function (response) {
+                    return __awaiter(this, void 0, void 0, function () {
+                        var data, obj;
+                        return __generator(this, function (_a) {
+                            switch (_a.label) {
+                                case 0: return [4 /*yield*/, station_1.getWeatherAndStationDataByKioskId(req.params.at, req.params.kioskId)];
+                                case 1:
+                                    data = _a.sent();
+                                    obj = {
+                                        at: req.params.at,
+                                        weather: response,
+                                        station: data
+                                    };
+                                    if (data) {
+                                        return [2 /*return*/, res.status(200).json({
+                                                status: 200,
+                                                data: obj,
+                                                error: null
+                                            })];
+                                    }
+                                    else {
+                                        return [2 /*return*/, res.status(404).json({
+                                                status: 404,
+                                                data: null,
+                                                error: "Could not find any station at the give time with the given KioskId"
+                                            })];
+                                    }
+                                    return [2 /*return*/];
+                            }
+                        });
                     });
                 });
-            });
+            }
+            else {
+                return [2 /*return*/, res.status(verified.status).json(verified)];
+            }
         }
         catch (err) {
             return [2 /*return*/, res.status(400).json({

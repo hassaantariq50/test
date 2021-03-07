@@ -3,9 +3,8 @@ import chaifs from 'chai-fs';
 import { expect } from 'chai';
 import sinon from 'sinon';
 import { createStation, getWeatherAndStationData, getWeatherAndStationDataByKioskId } from '../controllers/station';
-import mongoose from 'mongoose';
+import verifyToken from '../services/verifyToken';
 import Station from '../models/station';
-import { resolveModuleName } from 'typescript';
 
 chai.use(require('chai-fs'));
 chai.use(chaifs);
@@ -57,6 +56,54 @@ describe('station insertion unit test case', async () => {
                 // never called
             });
         });
+});
+
+describe('Issue jwt token by user id unit test case', async () => {
+  it('should return success from verify jwt token check', async function (done) {
+    let token:string = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZWJiOWVhZjU3YmRiNjAwMTA5NjEzNjYiLCJpYXQiOjE2MTQ4ODA0MTl9.D3EVqPxWoL3BN6sAqRmMGhbJj1oPDzpYHESUqpSeBHo';
+    let result:any = verifyToken(token);
+    if(result.status == 200){
+        expect(result).to.be.not.equal(undefined);
+        expect(result).to.be.not.equal(null);
+        expect(result.data._id).to.be.an('string');
+        done();
+    }
+    else{
+        // never called
+    }
+  });
+
+  it('should return unauthrorized from verify jwt token check failed unit', async function (done) {
+    let token:string = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZWJiOWVhZjU3YmRiNjAwMTA5NjEzNjciLCJpYXQiOjE2MTQ4ODA3NDd9.xAHCJT-G5dmY4BObm-6kHdcxZq3xUjjMnkrW_iT0yFE';
+    let result:any = verifyToken(token);
+    if(result.status == 200){
+        // never called
+    }
+    else{
+        expect(result).to.be.not.equal(undefined);
+        expect(result).to.be.not.equal(null);
+        expect(result.data).to.be.equal(null);
+        expect(result.status).to.be.equal(401);
+        expect(result.error).to.be.equal("Unauthorized");
+        done();
+    }
+  });
+
+  it('should return bad request from verify jwt token check failed unit', async function (done) {
+    let token:string = '';
+    let result:any = verifyToken(token);
+    if(result.status == 200){
+        // never called
+    }
+    else{
+        expect(result).to.be.not.equal(undefined);
+        expect(result).to.be.not.equal(null);
+        expect(result.data).to.be.equal(null);
+        expect(result.status).to.be.equal(400);
+        expect(result.error).to.be.equal("Bad Request");
+        done();
+    }
+  });
 });
 
 describe('station get unit test case by date', async () => {
@@ -116,4 +163,3 @@ describe('station get unit test case by date and Kiosk Id', async () => {
             done();
         });
 });
-

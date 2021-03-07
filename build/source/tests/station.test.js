@@ -44,6 +44,7 @@ var chai_fs_1 = __importDefault(require("chai-fs"));
 var chai_2 = require("chai");
 var sinon_1 = __importDefault(require("sinon"));
 var station_1 = require("../controllers/station");
+var verifyToken_1 = __importDefault(require("../services/verifyToken"));
 var station_2 = __importDefault(require("../models/station"));
 chai_1.default.use(require('chai-fs'));
 chai_1.default.use(chai_fs_1.default);
@@ -93,6 +94,72 @@ describe('station insertion unit test case', function () { return __awaiter(void
             })
                 .catch(function (error) {
                 // never called
+            });
+        });
+        return [2 /*return*/];
+    });
+}); });
+describe('Issue jwt token by user id unit test case', function () { return __awaiter(void 0, void 0, void 0, function () {
+    return __generator(this, function (_a) {
+        it('should return success from verify jwt token check', function (done) {
+            return __awaiter(this, void 0, void 0, function () {
+                var token, result;
+                return __generator(this, function (_a) {
+                    token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZWJiOWVhZjU3YmRiNjAwMTA5NjEzNjYiLCJpYXQiOjE2MTQ4ODA0MTl9.D3EVqPxWoL3BN6sAqRmMGhbJj1oPDzpYHESUqpSeBHo';
+                    result = verifyToken_1.default(token);
+                    if (result.status == 200) {
+                        chai_2.expect(result).to.be.not.equal(undefined);
+                        chai_2.expect(result).to.be.not.equal(null);
+                        chai_2.expect(result.data._id).to.be.an('string');
+                        done();
+                    }
+                    else {
+                        // never called
+                    }
+                    return [2 /*return*/];
+                });
+            });
+        });
+        it('should return unauthrorized from verify jwt token check failed unit', function (done) {
+            return __awaiter(this, void 0, void 0, function () {
+                var token, result;
+                return __generator(this, function (_a) {
+                    token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZWJiOWVhZjU3YmRiNjAwMTA5NjEzNjciLCJpYXQiOjE2MTQ4ODA3NDd9.xAHCJT-G5dmY4BObm-6kHdcxZq3xUjjMnkrW_iT0yFE';
+                    result = verifyToken_1.default(token);
+                    if (result.status == 200) {
+                        // never called
+                    }
+                    else {
+                        chai_2.expect(result).to.be.not.equal(undefined);
+                        chai_2.expect(result).to.be.not.equal(null);
+                        chai_2.expect(result.data).to.be.equal(null);
+                        chai_2.expect(result.status).to.be.equal(401);
+                        chai_2.expect(result.error).to.be.equal("Unauthorized");
+                        done();
+                    }
+                    return [2 /*return*/];
+                });
+            });
+        });
+        it('should return bad request from verify jwt token check failed unit', function (done) {
+            return __awaiter(this, void 0, void 0, function () {
+                var token, result;
+                return __generator(this, function (_a) {
+                    token = '';
+                    result = verifyToken_1.default(token);
+                    if (result.status == 200) {
+                        // never called
+                    }
+                    else {
+                        chai_2.expect(result).to.be.not.equal(undefined);
+                        chai_2.expect(result).to.be.not.equal(null);
+                        chai_2.expect(result.data).to.be.equal(null);
+                        chai_2.expect(result.status).to.be.equal(400);
+                        chai_2.expect(result.error).to.be.equal("Bad Request");
+                        done();
+                    }
+                    return [2 /*return*/];
+                });
             });
         });
         return [2 /*return*/];

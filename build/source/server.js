@@ -32,16 +32,14 @@ var mongoose_1 = __importDefault(require("mongoose"));
 var swagger_ui_express_1 = __importDefault(require("swagger-ui-express"));
 var swaggerDocument = __importStar(require("../swagger.json"));
 var cors_1 = __importDefault(require("cors"));
-// let cors = require('cors');
-// import dotenv from 'dotenv';
-// dotenv.config();
+var dotenv_1 = __importDefault(require("dotenv"));
+dotenv_1.default.config();
 scheduler_1.default();
 var NAMESPACE = 'Server';
 var router = express_1.default();
-var MONGO_ATLAS = "mongodb+srv://dbHassaan:dbHassaan@hassaan-indego-db.fcdob.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 /** Connect to Mongo */
 mongoose_1.default
-    .connect(MONGO_ATLAS, config_1.default.mongo.options)
+    .connect(config_1.default.mongo.url, config_1.default.mongo.options)
     .then(function (result) {
     logging_1.default.info(NAMESPACE, 'Mongo Connected');
 })
@@ -49,8 +47,6 @@ mongoose_1.default
     logging_1.default.error(NAMESPACE, error.message, error);
 });
 /** Parse the body of the request */
-// router.use(bodyParser.urlencoded({ extended: true }));
-// router.use(bodyParser.json());
 router.use(body_parser_1.default.json({ limit: '900mb' }));
 router.use(body_parser_1.default.urlencoded({ extended: true }));
 /* FOR CORS */

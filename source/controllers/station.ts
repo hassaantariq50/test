@@ -10,10 +10,13 @@ import Station from '../models/station';
  * @param object - object that needs to be saved
  * @returns {Promise<void>}
  */
-const createStation = async (object: object) => {
+const createStation = async (object: any) => {
     return new Promise((resolve, reject) => {
-      let tempRating = new Station(object);
-      tempRating.save((err, station) => {
+      let temp = new Station({
+            _id: new mongoose.Types.ObjectId(),
+            data: object
+        });
+      temp.save((err, station) => {
         if (err) {
           reject(err);
         } else {

@@ -10,10 +10,12 @@ import { createStation, getWeatherAndStationData, getWeatherAndStationDataByKios
 
 const router = express.Router();
 
-router.post('/indego-data-fetch-and-store-it-db', verifyToken, async (req, res) => {
+router.post('/indego-data-fetch-and-store-it-db', async (req, res) => {
     console.log("calling request...>>");
     try {
-        fetch('https://www.rideindego.com/stations/json/')
+        let verified = verifyToken(req.headers.authorization);
+        if(verified.status == 200){
+            fetch('https://www.rideindego.com/stations/json/')
             .then((res) => res.json())
             .catch(function (error) {
                 return error;
@@ -35,6 +37,10 @@ router.post('/indego-data-fetch-and-store-it-db', verifyToken, async (req, res) 
                     });
                 }
             });
+        }
+        else{
+            return res.status(verified.status).json(verified);
+        }
     } catch (err) {
         console.log('err >>', err);
         return res.status(400).json({
@@ -45,8 +51,10 @@ router.post('/indego-data-fetch-and-store-it-db', verifyToken, async (req, res) 
     }
 });
 
-router.get('/stations/:at', verifyToken, async (req, res) => {
+router.get('/stations/:at', async (req, res) => {
     try {
+        let verified = verifyToken(req.headers.authorization);
+        if(verified.status == 200){
         fetch('https://api.openweathermap.org/data/2.5/weather?q=Philadelphia&appid=' + config.auth.API_KEY)
             .then((res) => res.json())
             .catch(function (error) {
@@ -78,6 +86,10 @@ router.get('/stations/:at', verifyToken, async (req, res) => {
                     });
                 }
             });
+        }
+        else{
+            return res.status(verified.status).json(verified);
+        }
     } catch (err) {
         return res.status(400).json({
             status: 400,
@@ -87,8 +99,10 @@ router.get('/stations/:at', verifyToken, async (req, res) => {
     }
 });
 
-router.get('/stations/:at/:kioskId', verifyToken, async (req, res) => {
+router.get('/stations/:at/:kioskId', async (req, res) => {
     try {
+        let verified = verifyToken(req.headers.authorization);
+        if(verified.status == 200){
         fetch('https://api.openweathermap.org/data/2.5/weather?q=Philadelphia&appid=' + config.auth.API_KEY)
             .then((res) => res.json())
             .catch(function (error) {
@@ -120,6 +134,10 @@ router.get('/stations/:at/:kioskId', verifyToken, async (req, res) => {
                     });
                 }
             });
+        }
+        else{
+            return res.status(verified.status).json(verified);
+        }
     } catch (err) {
         return res.status(400).json({
             status: 400,

@@ -43,6 +43,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getWeatherAndStationDataByKioskId = exports.getWeatherAndStationData = exports.createStation = void 0;
+var mongoose_1 = __importDefault(require("mongoose"));
 var station_1 = __importDefault(require("../models/station"));
 /**
  * createStation - insert station in database.
@@ -52,8 +53,11 @@ var station_1 = __importDefault(require("../models/station"));
 var createStation = function (object) { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
         return [2 /*return*/, new Promise(function (resolve, reject) {
-                var tempRating = new station_1.default(object);
-                tempRating.save(function (err, station) {
+                var temp = new station_1.default({
+                    _id: new mongoose_1.default.Types.ObjectId(),
+                    data: object
+                });
+                temp.save(function (err, station) {
                     if (err) {
                         reject(err);
                     }
