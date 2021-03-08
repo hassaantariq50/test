@@ -26,15 +26,15 @@ var verifyToken = function (token) {
             return {
                 status: 401,
                 data: null,
-                error: "Unauthorized"
+                error: 'Unauthorized'
             };
         }
     }
     catch (error) {
         return {
-            status: 400,
+            status: 401,
             data: null,
-            error: "Bad Request"
+            error: 'Unauthorized'
         };
     }
 };

@@ -12,7 +12,7 @@ import config from '../config/config';
  * @param next - proceed to the next function
  * @returns {Promise<void>}
  */
-const verifyToken = function (token:any) {
+const verifyToken = function (token: any) {
     try {
         let verified: any = verify(token, config.auth.SECRET_KEY);
         if (verified._id == config.auth.ID) {
@@ -25,14 +25,14 @@ const verifyToken = function (token:any) {
             return {
                 status: 401,
                 data: null,
-                error: "Unauthorized"
+                error: 'Unauthorized'
             };
         }
     } catch (error) {
         return {
-            status: 400,
+            status: 401,
             data: null,
-            error: "Bad Request"
+            error: 'Unauthorized'
         };
     }
 };
