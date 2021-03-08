@@ -12,17 +12,17 @@ import Station from '../models/station';
  */
 const createStation = async (object: any) => {
     return new Promise((resolve, reject) => {
-      let temp = new Station({
+        let temp = new Station({
             _id: new mongoose.Types.ObjectId(),
             data: object
         });
-      temp.save((err, station) => {
-        if (err) {
-          reject(err);
-        } else {
-          resolve(station);
-        }
-      });
+        temp.save((err, station) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(station);
+            }
+        });
     });
 };
 
@@ -39,7 +39,6 @@ const getWeatherAndStationData = async (at: String) => {
         return error;
     }
 };
-
 
 /**
  * getWeatherAndStationDataByKioskId - Get weather and station data by its kioski id.

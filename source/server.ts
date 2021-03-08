@@ -32,8 +32,8 @@ router.use(bodyParser.json({ limit: '900mb' }));
 router.use(bodyParser.urlencoded({ extended: true }));
 
 /* FOR CORS */
-router.use(cors());    
-    
+router.use(cors());
+
 /** Log the request */
 router.use((req, res, next) => {
     /** Log the req */
@@ -46,8 +46,6 @@ router.use((req, res, next) => {
 
     next();
 });
-
-
 
 router.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
@@ -75,6 +73,5 @@ router.use((req, res, next) => {
         message: error.message
     });
 });
-
 
 router.listen(config.server.port, () => logging.info(NAMESPACE, `Server is running ${config.server.hostname}:${config.server.port}`));
