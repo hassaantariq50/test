@@ -48,9 +48,12 @@ var mongoose_1 = __importDefault(require("mongoose"));
 var station_1 = __importDefault(require("../models/station"));
 //Hit every 1 hour
 var scheduler = function () { return __awaiter(void 0, void 0, void 0, function () {
-    var task;
+    var rule;
     return __generator(this, function (_a) {
-        task = node_schedule_1.default.scheduleJob('0 0 */1 * * *', function () {
+        rule = new node_schedule_1.default.RecurrenceRule();
+        rule.minute = 1;
+        node_schedule_1.default.scheduleJob(rule, function () {
+            console.log('<<<....scheduling....>>>');
             node_fetch_1.default('https://www.rideindego.com/stations/json/')
                 .then(function (res) { return res.json(); })
                 .catch(function (error) {

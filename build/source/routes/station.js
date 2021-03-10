@@ -50,7 +50,7 @@ var router = express_1.default.Router();
 router.post('/indego-data-fetch-and-store-it-db', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var verified;
     return __generator(this, function (_a) {
-        console.log("calling request...>>");
+        console.log('calling request...>>');
         try {
             verified = verifyToken_1.default(req.headers.authorization);
             if (verified.status == 200) {
@@ -78,7 +78,7 @@ router.post('/indego-data-fetch-and-store-it-db', function (req, res) { return _
                                         return [2 /*return*/, res.status(500).json({
                                                 status: 500,
                                                 data: null,
-                                                error: "Something went wrong"
+                                                error: 'Something went wrong'
                                             })];
                                     }
                                     return [2 /*return*/];
@@ -141,7 +141,7 @@ router.get('/stations/:at', function (req, res) { return __awaiter(void 0, void 
                                         return [2 /*return*/, res.status(404).json({
                                                 status: 404,
                                                 data: null,
-                                                error: "Could not find any station at the given time"
+                                                error: 'Could not find any station at the given time'
                                             })];
                                     }
                                     return [2 /*return*/];
@@ -203,7 +203,7 @@ router.get('/stations/:at/:kioskId', function (req, res) { return __awaiter(void
                                         return [2 /*return*/, res.status(404).json({
                                                 status: 404,
                                                 data: null,
-                                                error: "Could not find any station at the give time with the given KioskId"
+                                                error: 'Could not find any station at the give time with the given KioskId'
                                             })];
                                     }
                                     return [2 /*return*/];

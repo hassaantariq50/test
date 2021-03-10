@@ -53,9 +53,7 @@ describe('station insertion unit test case', function () { return __awaiter(void
         it('should return error from station save', function (done) {
             var error = true;
             var obj = {};
-            var isSaveMethodCalled = sinon_1.default
-                .stub(station_2.default.prototype, "save")
-                .yields(error, null);
+            var isSaveMethodCalled = sinon_1.default.stub(station_2.default.prototype, 'save').yields(error, null);
             station_1.createStation(obj)
                 .then(function (res) {
                 // never called
@@ -75,19 +73,17 @@ describe('station insertion unit test case', function () { return __awaiter(void
                     feature: [],
                     type: 'string'
                 },
-                createdAt: "2021-03-06 21:00:06.685Z",
-                updatedAt: "2021-03-06 21:00:06.685Z"
+                createdAt: '2021-03-06 21:00:06.685Z',
+                updatedAt: '2021-03-06 21:00:06.685Z'
             };
-            var isSaveMethodCalled = sinon_1.default
-                .stub(station_2.default.prototype, "save")
-                .yields(error, newObj);
+            var isSaveMethodCalled = sinon_1.default.stub(station_2.default.prototype, 'save').yields(error, newObj);
             station_1.createStation(newObj)
                 .then(function (res) {
                 chai_2.expect(res).to.be.not.equal(undefined);
                 chai_2.expect(res).to.be.not.equal(null);
-                chai_2.expect(newObj.createdAt).to.be.an("string");
+                chai_2.expect(newObj.createdAt).to.be.an('string');
                 chai_2.expect(newObj.data).to.be.equals(newObj.data);
-                chai_2.expect(newObj.updatedAt).to.be.an("string");
+                chai_2.expect(newObj.updatedAt).to.be.an('string');
                 chai_2.expect(isSaveMethodCalled.calledOnce).to.be.equal(true);
                 isSaveMethodCalled.restore();
                 done();
@@ -134,7 +130,7 @@ describe('Issue jwt token by user id unit test case', function () { return __awa
                         chai_2.expect(result).to.be.not.equal(null);
                         chai_2.expect(result.data).to.be.equal(null);
                         chai_2.expect(result.status).to.be.equal(401);
-                        chai_2.expect(result.error).to.be.equal("Unauthorized");
+                        chai_2.expect(result.error).to.be.equal('Unauthorized');
                         done();
                     }
                     return [2 /*return*/];
@@ -155,7 +151,7 @@ describe('Issue jwt token by user id unit test case', function () { return __awa
                         chai_2.expect(result).to.be.not.equal(null);
                         chai_2.expect(result.data).to.be.equal(null);
                         chai_2.expect(result.status).to.be.equal(400);
-                        chai_2.expect(result.error).to.be.equal("Bad Request");
+                        chai_2.expect(result.error).to.be.equal('Bad Request');
                         done();
                     }
                     return [2 /*return*/];
@@ -171,7 +167,7 @@ describe('station get unit test case by date', function () { return __awaiter(vo
             return __awaiter(this, void 0, void 0, function () {
                 var at;
                 return __generator(this, function (_a) {
-                    at = "2021-03-06 21:00:06.685Z";
+                    at = '2021-03-06 21:00:06.685Z';
                     station_1.getWeatherAndStationData(at)
                         .then(function (res) {
                         // never called
@@ -189,7 +185,7 @@ describe('station get unit test case by date', function () { return __awaiter(vo
             return __awaiter(this, void 0, void 0, function () {
                 var at;
                 return __generator(this, function (_a) {
-                    at = "2021-03-06 21:00:06.685Z";
+                    at = '2021-03-06 21:00:06.685Z';
                     station_1.getWeatherAndStationData(at)
                         .then(function (res) {
                         chai_2.expect(res).to.be.not.equal(undefined);
@@ -210,8 +206,8 @@ describe('station get unit test case by date', function () { return __awaiter(vo
 describe('station get unit test case by date and Kiosk Id', function () { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
         it('should return error on getting station from database', function (done) {
-            var at = "2021-03-06 21:00:06.685Z";
-            var id = "6043ed5623dab91c48889090";
+            var at = '2021-03-06 21:00:06.685Z';
+            var id = '6043ed5623dab91c48889090';
             station_1.getWeatherAndStationDataByKioskId(at, id)
                 .then(function (res) {
                 // never called
@@ -223,8 +219,8 @@ describe('station get unit test case by date and Kiosk Id', function () { return
             done();
         });
         it('should return station object on getting station from database', function (done) {
-            var at = "2021-03-06 21:00:06.685Z";
-            var id = "6043ed5623dab91c48889090";
+            var at = '2021-03-06 21:00:06.685Z';
+            var id = '6043ed5623dab91c48889090';
             station_1.getWeatherAndStationDataByKioskId(at, id)
                 .then(function (res) {
                 chai_2.expect(res).to.be.not.equal(undefined);
