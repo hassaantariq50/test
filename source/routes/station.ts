@@ -95,7 +95,7 @@ router.get('/stations/:at', async (req, res) => {
     }
 });
 
-router.get('/stations/:at/:kioskId', async (req, res) => {
+router.get('/stations/:kioskId/:at/', async (req, res) => {
     try {
         let verified = verifyToken(req.headers.authorization);
         if (verified.status == 200) {
@@ -109,7 +109,7 @@ router.get('/stations/:at/:kioskId', async (req, res) => {
                     });
                 })
                 .then(async function (response) {
-                    let data = await getWeatherAndStationDataByKioskId(req.params.at, req.params.kioskId);
+                    let data = await getWeatherAndStationDataByKioskId(req.params.kioskId, req.params.at);
                     let obj = {
                         at: req.params.at,
                         weather: response,

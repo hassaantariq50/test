@@ -5,6 +5,7 @@ import sinon from 'sinon';
 import { createStation, getWeatherAndStationData, getWeatherAndStationDataByKioskId } from '../controllers/station';
 import verifyToken from '../services/verifyToken';
 import Station from '../models/station';
+import fetch from 'node-fetch';
 
 chai.use(require('chai-fs'));
 chai.use(chaifs);
@@ -154,5 +155,112 @@ describe('station get unit test case by date and Kiosk Id', async () => {
                 // never called
             });
         done();
+    });
+});
+
+describe('API tests for all routes', async () => {
+    //routing to https://hassaan-indego-test.herokuapp.com/api/v1/indego-data-fetch-and-store-it-db'
+    it('POST request and should return successfull with 200 response on https://hassaan-indego-test.herokuapp.com/api/v1/indego-data-fetch-and-store-it-db', function (done) {
+        fetch('https://hassaan-indego-test.herokuapp.com/api/v1/indego-data-fetch-and-store-it-db', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZWJiOWVhZjU3YmRiNjAwMTA5NjEzNjYiLCJpYXQiOjE2MTQ4ODA0MTl9.D3EVqPxWoL3BN6sAqRmMGhbJj1oPDzpYHESUqpSeBHo`
+            }
+        })
+            .then((res) => res.json())
+            .then(function (response) {
+                expect(response).to.be.not.equal(undefined);
+                expect(response).to.be.not.equal(null);
+                expect(response.status).to.be.equal(200);
+                done();
+            })
+            .catch((error: any) => {
+                // never called
+            });
+    });
+    it('POST request and should return Unauthorized with 401 response on https://hassaan-indego-test.herokuapp.com/api/v1/stations?at=2021-03-10T10:01:03.865Z', function (done) {
+        fetch('https://hassaan-indego-test.herokuapp.com/api/v1/indego-data-fetch-and-store-it-db', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: ``
+            }
+        })
+            .then((res) => res.json())
+            .then(function (response) {
+                expect(response).to.be.not.equal(undefined);
+                expect(response).to.be.not.equal(null);
+                expect(response.status).to.be.equal(401);
+                done();
+            });
+    });
+
+    //routing to https://hassaan-indego-test.herokuapp.com/api/v1/stations?at=2021-03-10T10:01:03.865Z'
+    it('GET request and should return successfull with 200 response on https://hassaan-indego-test.herokuapp.com/api/v1/stations?at=2021-03-10T10:01:03.865Z', function (done) {
+        fetch('https://hassaan-indego-test.herokuapp.com/api/v1/stations/2021-03-10T10:01:03.865Z', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZWJiOWVhZjU3YmRiNjAwMTA5NjEzNjYiLCJpYXQiOjE2MTQ4ODA0MTl9.D3EVqPxWoL3BN6sAqRmMGhbJj1oPDzpYHESUqpSeBHo`
+            }
+        })
+            .then((res) => res.json())
+            .then(function (response) {
+                expect(response).to.be.not.equal(undefined);
+                expect(response).to.be.not.equal(null);
+                expect(response.status).to.be.equal(200);
+                done();
+            });
+    });
+    it('GET request and should return Unauthorized with 401 response on https://hassaan-indego-test.herokuapp.com/api/v1/stations?at=2021-03-10T10:01:03.865Z', function (done) {
+        fetch('https://hassaan-indego-test.herokuapp.com/api/v1/stations/2021-03-10T10:01:03.865Z', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: ``
+            }
+        })
+            .then((res) => res.json())
+            .then(function (response) {
+                expect(response).to.be.not.equal(undefined);
+                expect(response).to.be.not.equal(null);
+                expect(response.status).to.be.equal(401);
+                done();
+            });
+    });
+
+    //routing to https://hassaan-indego-test.herokuapp.com/api/v1/stations/KIOSKID_GOES_HERE?at=2021-03-10T10:01:03.865Z'
+    it('GET request and should return successfull with 200 response on https://hassaan-indego-test.herokuapp.com/api/v1/stations/KIOSKID_GOES_HERE?at=2021-03-10T10:01:03.865Z', function (done) {
+        fetch('https://hassaan-indego-test.herokuapp.com/api/v1/stations/3004/2021-03-10T10:01:03.865Z', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZWJiOWVhZjU3YmRiNjAwMTA5NjEzNjYiLCJpYXQiOjE2MTQ4ODA0MTl9.D3EVqPxWoL3BN6sAqRmMGhbJj1oPDzpYHESUqpSeBHo`
+            }
+        })
+            .then((res) => res.json())
+            .then(function (response) {
+                expect(response).to.be.not.equal(undefined);
+                expect(response).to.be.not.equal(null);
+                expect(response.status).to.be.equal(200);
+                done();
+            });
+    });
+    it('GET request and should return Unauthorized with 401 response on https://hassaan-indego-test.herokuapp.com/api/v1/stations?at=2021-03-10T10:01:03.865Z', function (done) {
+        fetch('https://hassaan-indego-test.herokuapp.com/api/v1/stations/3004/2021-03-10T10:01:03.865Z', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: ``
+            }
+        })
+            .then((res) => res.json())
+            .then(function (response) {
+                expect(response).to.be.not.equal(undefined);
+                expect(response).to.be.not.equal(null);
+                expect(response.status).to.be.equal(401);
+                done();
+            });
     });
 });

@@ -164,7 +164,7 @@ router.get('/stations/:at', function (req, res) { return __awaiter(void 0, void 
         return [2 /*return*/];
     });
 }); });
-router.get('/stations/:at/:kioskId', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+router.get('/stations/:kioskId/:at/', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var verified;
     return __generator(this, function (_a) {
         try {
@@ -184,7 +184,7 @@ router.get('/stations/:at/:kioskId', function (req, res) { return __awaiter(void
                         var data, obj;
                         return __generator(this, function (_a) {
                             switch (_a.label) {
-                                case 0: return [4 /*yield*/, station_1.getWeatherAndStationDataByKioskId(req.params.at, req.params.kioskId)];
+                                case 0: return [4 /*yield*/, station_1.getWeatherAndStationDataByKioskId(req.params.kioskId, req.params.at)];
                                 case 1:
                                     data = _a.sent();
                                     obj = {

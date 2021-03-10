@@ -30,9 +30,9 @@ const verifyToken = function (token: any) {
         }
     } catch (error) {
         return {
-            status: 401,
+            status: 400,
             data: null,
-            error: 'Unauthorized'
+            error: 'Bad Request'
         };
     }
 };

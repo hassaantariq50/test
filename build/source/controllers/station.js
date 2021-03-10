@@ -97,7 +97,7 @@ exports.getWeatherAndStationData = getWeatherAndStationData;
  * @param at - string that needs to be compared
  * @returns {Promise}
  */
-var getWeatherAndStationDataByKioskId = function (at, id) { return __awaiter(void 0, void 0, void 0, function () {
+var getWeatherAndStationDataByKioskId = function (id, at) { return __awaiter(void 0, void 0, void 0, function () {
     var stations, check, specficStation, i, err_1;
     return __generator(this, function (_a) {
         switch (_a.label) {
@@ -119,7 +119,10 @@ var getWeatherAndStationDataByKioskId = function (at, id) { return __awaiter(voi
                     return [2 /*return*/, specficStation];
                 }
                 else {
-                    return [2 /*return*/, { error: 'Cannot find data' }];
+                    return [2 /*return*/, {
+                            error: 'Cannot find station at this time',
+                            status: 404
+                        }];
                 }
                 return [3 /*break*/, 3];
             case 2:

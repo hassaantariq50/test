@@ -45,7 +45,7 @@ const getWeatherAndStationData = async (at: String) => {
  * @param at - string that needs to be compared
  * @returns {Promise}
  */
-const getWeatherAndStationDataByKioskId = async (at: String, id: any) => {
+const getWeatherAndStationDataByKioskId = async (id: any, at: String) => {
     try {
         let stations = await Station.findOne({ $or: [{ createdAt: at }, { createdAt: { $gt: at } }] });
         let check: Number = 0;
@@ -60,7 +60,10 @@ const getWeatherAndStationDataByKioskId = async (at: String, id: any) => {
         if (check === 1) {
             return specficStation;
         } else {
-            return { error: 'Cannot find data' };
+            return {
+                error: 'Cannot find station at this time',
+                status: 404
+            };
         }
     } catch (err) {
         return err;
