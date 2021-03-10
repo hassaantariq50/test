@@ -24,7 +24,6 @@ const MONGO_USERNAME = process.env.MONGO_USERNAME;
 const MONGO_URL = process.env.DB || '';
 
 const MONGO = {
-    // host: MONGO_HOST,
     username: MONGO_USERNAME,
     options: MONGO_OPTIONS,
     url: MONGO_URL

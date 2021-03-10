@@ -25,7 +25,6 @@ var AUTH = {
 var MONGO_USERNAME = process.env.MONGO_USERNAME;
 var MONGO_URL = process.env.DB || '';
 var MONGO = {
-    // host: MONGO_HOST,
     username: MONGO_USERNAME,
     options: MONGO_OPTIONS,
     url: MONGO_URL
