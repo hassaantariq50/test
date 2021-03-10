@@ -29,8 +29,8 @@ const MONGO = {
     url: MONGO_URL
 };
 
-const SERVER_HOSTNAME = process.env.SERVER_HOSTNAME || '';
-// const SERVER_HOSTNAME = process.env.SERVER_HOSTNAME || 'localhost';
+// const SERVER_HOSTNAME = process.env.SERVER_HOSTNAME || '';
+const SERVER_HOSTNAME = 'localhost';
 const SERVER_PORT = process.env.PORT || '';
 
 const SERVER = {
