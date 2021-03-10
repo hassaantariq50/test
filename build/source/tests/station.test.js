@@ -238,8 +238,44 @@ describe('station get unit test case by date and Kiosk Id', function () { return
 }); });
 describe('API tests for all routes', function () { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
+        //routing to https://hassaan-indego-test.herokuapp.com/api/v1/indego-data-fetch-and-store-it-db'
+        it('POST request and should return successfull with 200 response on https://hassaan-indego-test.herokuapp.com/api/v1/indego-data-fetch-and-store-it-db', function (done) {
+            node_fetch_1.default('https://hassaan-indego-test.herokuapp.com/api/v1/indego-data-fetch-and-store-it-db', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZWJiOWVhZjU3YmRiNjAwMTA5NjEzNjYiLCJpYXQiOjE2MTQ4ODA0MTl9.D3EVqPxWoL3BN6sAqRmMGhbJj1oPDzpYHESUqpSeBHo"
+                }
+            })
+                .then(function (res) { return res.json(); })
+                .then(function (response) {
+                chai_2.expect(response).to.be.not.equal(undefined);
+                chai_2.expect(response).to.be.not.equal(null);
+                chai_2.expect(response.status).to.be.equal(200);
+                done();
+            })
+                .catch(function (error) {
+                // never called
+            });
+        });
+        it('POST request and should return Unauthorized with 401 response on https://hassaan-indego-test.herokuapp.com/api/v1/stations?at=2021-03-10T10:01:03.865Z', function (done) {
+            node_fetch_1.default('https://hassaan-indego-test.herokuapp.com/api/v1/indego-data-fetch-and-store-it-db', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: ""
+                }
+            })
+                .then(function (res) { return res.json(); })
+                .then(function (response) {
+                chai_2.expect(response).to.be.not.equal(undefined);
+                chai_2.expect(response).to.be.not.equal(null);
+                chai_2.expect(response.status).to.be.equal(401);
+                done();
+            });
+        });
         //routing to https://hassaan-indego-test.herokuapp.com/api/v1/stations?at=2021-03-10T10:01:03.865Z'
-        it('should return successfull with 200 response on https://hassaan-indego-test.herokuapp.com/api/v1/stations?at=2021-03-10T10:01:03.865Z', function (done) {
+        it('GET request and should return successfull with 200 response on https://hassaan-indego-test.herokuapp.com/api/v1/stations?at=2021-03-10T10:01:03.865Z', function (done) {
             node_fetch_1.default('https://hassaan-indego-test.herokuapp.com/api/v1/stations/2021-03-10T10:01:03.865Z', {
                 method: 'GET',
                 headers: {
@@ -255,7 +291,7 @@ describe('API tests for all routes', function () { return __awaiter(void 0, void
                 done();
             });
         });
-        it('should return Unauthorized with 401 response on https://hassaan-indego-test.herokuapp.com/api/v1/stations?at=2021-03-10T10:01:03.865Z', function (done) {
+        it('GET request and should return Unauthorized with 401 response on https://hassaan-indego-test.herokuapp.com/api/v1/stations?at=2021-03-10T10:01:03.865Z', function (done) {
             node_fetch_1.default('https://hassaan-indego-test.herokuapp.com/api/v1/stations/2021-03-10T10:01:03.865Z', {
                 method: 'GET',
                 headers: {
@@ -271,9 +307,9 @@ describe('API tests for all routes', function () { return __awaiter(void 0, void
                 done();
             });
         });
-        //routing to http://localhost:4000/api/v1/stations/2021-03-04T22:45:08.998Z/3015'
-        it('should return successfull with 200 response on https://hassaan-indego-test.herokuapp.com/api/v1/stations?at=2021-03-10T10:01:03.865Z', function (done) {
-            node_fetch_1.default('https://hassaan-indego-test.herokuapp.com/api/v1/stations/2021-03-10T10:01:03.865Z/3004', {
+        //routing to https://hassaan-indego-test.herokuapp.com/api/v1/stations/KIOSKID_GOES_HERE?at=2021-03-10T10:01:03.865Z'
+        it('GET request and should return successfull with 200 response on https://hassaan-indego-test.herokuapp.com/api/v1/stations/KIOSKID_GOES_HERE?at=2021-03-10T10:01:03.865Z', function (done) {
+            node_fetch_1.default('https://hassaan-indego-test.herokuapp.com/api/v1/stations/3004/2021-03-10T10:01:03.865Z', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -288,8 +324,8 @@ describe('API tests for all routes', function () { return __awaiter(void 0, void
                 done();
             });
         });
-        it('should return Unauthorized with 401 response on https://hassaan-indego-test.herokuapp.com/api/v1/stations?at=2021-03-10T10:01:03.865Z', function (done) {
-            node_fetch_1.default('https://hassaan-indego-test.herokuapp.com/api/v1/stations/2021-03-10T10:01:03.865Z', {
+        it('GET request and should return Unauthorized with 401 response on https://hassaan-indego-test.herokuapp.com/api/v1/stations?at=2021-03-10T10:01:03.865Z', function (done) {
+            node_fetch_1.default('https://hassaan-indego-test.herokuapp.com/api/v1/stations/3004/2021-03-10T10:01:03.865Z', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
